@@ -1,0 +1,31 @@
+<%- include header %>
+<% articles.forEach(function(article, index){ %>
+  <div class='post_list'>
+    <div class='post_title'><%= article.title %></div>
+    <div class='post_content'><%- article.content %></div>
+    <div class='post_info'>
+      <%= article.date %>&nbsp;&nbsp;
+      <%= article.tag %>&nbsp;&nbsp;
+      <%= article.access %>&nbsp;&nbsp;
+      <%= article.name %>&nbsp;&nbsp;
+      tag&nbsp;&nbsp;
+      推荐使用：
+      <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>
+      <span aria-hidden="true" title="Firefox" class="icon-firefox"></span>
+      <span aria-hidden="true" title="Opera" class="icon-opera"></span>
+      <span aria-hidden="true" title="Safari" class="icon-safari"></span>
+      <span aria-hidden="true" title="IE9+" class="icon-IE"></span>&nbsp;&nbsp;
+      订阅：
+      <a href="Home/Feed" style="text-decoration:none;" target="_blank">
+        <span aria-hidden="true" title="订阅" style="color:#009933; cursor:pointer;" class="icon-feed"></span>
+      </a>
+    </div>
+  </div>
+<% }) %>
+
+  <div id='next_page' class='post_list'>
+    <div id="next_p" class='post_title'>加载下一页...</div>
+    <input type="hidden" id="Hid_Page" value="10" />
+  </div>
+
+<%- include footer %>

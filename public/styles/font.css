@@ -1,0 +1,136 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.woff') format('woff'),
+		url('../fonts/icomoon.ttf') format('truetype'),
+		url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-home, .icon-feed, .icon-chrome, .icon-firefox, .icon-IE, .icon-opera, .icon-safari, .icon-happy, .icon-happy-2, .icon-smiley, .icon-smiley-2, .icon-tongue, .icon-tongue-2, .icon-sad, .icon-sad-2, .icon-wink, .icon-wink-2, .icon-grin, .icon-grin-2, .icon-cool, .icon-cool-2, .icon-angry, .icon-shocked, .icon-shocked-2, .icon-confused, .icon-confused-2, .icon-neutral, .icon-neutral-2, .icon-wondering, .icon-wondering-2, .icon-angry-2, .icon-console {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	font-size: 1em;
+}
+.icon-home:before {
+	content: "\61";
+}
+.icon-feed:before {
+	content: "\62";
+}
+.icon-chrome:before {
+	content: "\63";
+}
+.icon-firefox:before {
+	content: "\64";
+}
+.icon-IE:before {
+	content: "\65";
+}
+.icon-opera:before {
+	content: "\66";
+}
+.icon-safari:before {
+	content: "\67";
+}
+.icon-happy:before {
+	content: "\68";
+}
+.icon-happy-2:before {
+	content: "\69";
+}
+.icon-smiley:before {
+	content: "\6a";
+}
+.icon-smiley-2:before {
+	content: "\6b";
+}
+.icon-tongue:before {
+	content: "\6c";
+}
+.icon-tongue-2:before {
+	content: "\6d";
+}
+.icon-sad:before {
+	content: "\6e";
+}
+.icon-sad-2:before {
+	content: "\6f";
+}
+.icon-wink:before {
+	content: "\70";
+}
+.icon-wink-2:before {
+	content: "\71";
+}
+.icon-grin:before {
+	content: "\72";
+}
+.icon-grin-2:before {
+	content: "\73";
+}
+.icon-cool:before {
+	content: "\74";
+}
+.icon-cool-2:before {
+	content: "\75";
+}
+.icon-angry:before {
+	content: "\76";
+}
+.icon-shocked:before {
+	content: "\77";
+}
+.icon-shocked-2:before {
+	content: "\78";
+}
+.icon-confused:before {
+	content: "\79";
+}
+.icon-confused-2:before {
+	content: "\7a";
+}
+.icon-neutral:before {
+	content: "\31";
+}
+.icon-neutral-2:before {
+	content: "\32";
+}
+.icon-wondering:before {
+	content: "\33";
+}
+.icon-wondering-2:before {
+	content: "\34";
+}
+.icon-angry-2:before {
+	content: "\35";
+}
+.icon-console:before {
+	content: "\36";
+}

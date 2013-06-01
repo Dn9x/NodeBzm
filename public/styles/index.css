@@ -1,0 +1,294 @@
+﻿body 
+{
+	margin:0px;
+	padding:0px;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+}
+
+::selection {
+  color: #0088dd;
+  background: #dcdcdc;
+}
+
+#header
+{
+    left:0px;
+    top:0px;
+    position:fixed;
+    width:100%;
+    height:30px;
+    line-height:30px;
+    border:0px solid red;     
+    z-index:2;   
+    text-align:right;
+    font-size:12px;
+    color:#222222;
+    text-decoration:underline;
+}
+
+#pages
+{
+	left:0px;
+	top:0px;
+	width:100%;
+	height:auto !important;
+	height:1000px;
+	min-height:1000px;
+	border:0px solid #CCCCCC;
+	z-index:1;
+	overflow:hidden;
+	padding:0px 0px 0px 0px;
+	background:url(../images/bck5.png);
+	/*background: #DFDFDF;*/
+}
+
+#main
+{
+    margin:30px auto;
+}
+
+#Back
+{
+	width:100px;
+	height:30px;
+	border:1px solid #CCCCCC;
+	right:2px;
+	top:2px;	
+	z-index:2;
+	position:absolute;
+	background-color:White;
+}
+
+#foots
+{
+	position:fixed;
+	right:2px;
+	bottom:2px;
+	border:0px;
+	padding:1px auto;
+	width:50px;
+	height:50px;
+	line-height:50px;
+	z-index:20;
+	font-size:16px;
+	font-weight:bold;
+	color:Gray;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	cursor:pointer;
+	text-align:center;
+}
+
+.post_list
+{
+	margin:10px auto;
+	padding:10px 6px;
+	width:600px;
+	overflow:hidden;
+	height:auto;
+	border:1px solid #CCCCCC;
+	border-radius:5px;
+	text-align:center;
+	box-shadow:4px 2px 6px #777;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	z-index:2;
+	background: #EFEFEF;
+}
+
+.reply_list
+{
+	margin:10px auto;
+	padding:10px 6px;
+	width:600px;
+	overflow:hidden;
+	height:auto;
+	border:1px solid #CCCCCC;
+	border-radius:5px;
+	text-align:center;
+	box-shadow:4px 2px 6px #777;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	background-color:White;
+	z-index:2;
+}
+
+.post_title
+{
+	color:#046380;
+	text-decoration:none;
+	font-size:20px;
+	line-height:24px;
+	font-weight:bold;
+	text-align:left;
+	width:96%;
+	height:24px;
+	margin:2px auto;
+	border:0px solid #CCC;
+	z-index:3;
+	font-family:'Comic Sans MS',cursive;
+}
+
+.post_title a
+{
+	color:#046380;
+	text-decoration:none;
+	font-size:20px;
+	line-height:24px;
+	font-weight:bold;
+	text-align:left;
+	/*/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;*/
+	font-family:'Comic Sans MS',cursive;
+}
+
+#next_page div
+{
+	text-align:center;
+	cursor:pointer;
+}
+
+.post_content
+{
+	font-size:12px;
+	color:#333;
+	width:96%;
+	height:auto;
+	text-align:left;
+	margin:2px auto;
+	border:0px solid #CCC;
+	word-wrap:break-word;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	z-index:3;
+}
+
+.post_info
+{
+	font-size:12px;
+	color:#AAAAAA;
+	width:96%;
+	text-align:left;
+	height:14px;
+	margin:2px auto;
+	border:0px solid #CCC;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	z-index:3;
+}
+
+.post_info A
+{
+	color:#AAAAAA;
+}
+
+#page
+{
+	position:fixed;
+	right:10px;
+	top:30%;
+	width:60px;
+	height:130px;
+	border:0px solid #CCC;
+	z-index:10;
+}
+
+.page_up
+{
+	width:50px;
+	height:34px;
+	margin:20px auto;
+	cursor:pointer;
+	text-align:center;
+}
+
+.auth_list
+{
+	width:600px;
+	height:auto;
+	margin:20px auto;
+	border:0px solid #CCCCCC;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	padding:10px 10px;
+	color:#FFFFFF;
+	text-align:left;
+	font-size:12px;
+}
+
+.auth_list_title
+{
+	margin-top:80px;
+	font-size:28px;
+	font-weight:bold;
+}
+
+.auth_list_spce
+{
+	height:321px;
+}
+
+.auth_a
+{
+	color:#AAAAAA;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.detail_a
+{
+	color:#046380;
+	text-decoration:none;
+	font-size:20px;
+	line-height:24px;
+	font-weight:bold;
+	text-align:left;
+}
+
+.list_hover
+{
+	font-size:14px;
+	color:#AAAAAA;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+}
+
+#head
+{
+	margin:10px auto;
+	width:600px; 
+	height:auto; 
+	border:1px solid #ccc; 
+	color:#555555; 
+	font-size:14px; 
+	text-align:left;
+	border-radius:5px;
+}
+
+.tag_list
+{
+	width:99%; 
+	height:auto; 
+	border:0px solid #ccc; 
+	margin:4px auto; 
+	padding:4px;
+}
+
+.tag_list_title
+{
+	margin:2px auto 0px auto; 
+	width:94%; 
+	height:30px; 
+	line-height:30px;
+	font-size:20px;
+	color:#046380;
+	padding:1px 10px;
+	border:1px solid #CCC; 
+	cursor:pointer;
+}
+
+.tag_list_cont
+{
+	margin:0px auto 2px auto; 
+	width:94%; 
+	height:auto; 
+	border-left:1px solid #CCC; 
+	border-right:1px solid #CCC;
+	border-bottom:1px solid #CCC; 
+	padding:4px 10px;
+	word-wrap:break-word;
+	display:none;
+}
+
