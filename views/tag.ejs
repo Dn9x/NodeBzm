@@ -18,11 +18,7 @@
     <div class='post_title'>
       <a href='/detail/<%= article.id %>' target='_blank'><%= article.title %></a>
     </div>
-    <div class='post_content'>
-      <%
-        var content = article.content.replace(//Content/Editor/attached/image/g,"http://121.199.33.218/bzm/Content/Editor/attached/image/")
-      %>
-      <%- content %></div>
+    <div class='post_content'><%- article.content %></div>
     <div class='post_info'>
       <%= article.date %>&nbsp;&nbsp;
       <%= article.tag %>&nbsp;&nbsp;
