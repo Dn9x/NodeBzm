@@ -1,6 +1,7 @@
 ﻿
 var Article = require('../models/article.js');
 var Tag = require('../models/tag.js');
+var Log = require('../models/log.js');
 
 module.exports = function(app){
   app.get('/',function(req,res){
@@ -12,6 +13,8 @@ module.exports = function(app){
     		//如果有错就给文章空值
     		articles = [];
     	}
+
+      Log.error('这里是日志：首页文章列表');
 
     	//返回结果
   		res.render('index', {
@@ -32,6 +35,8 @@ module.exports = function(app){
         article = [];
       }
 
+      Log.log('这里是日志：文章详情');
+
       //返回结果
       res.render('detail', {
         title: article.title,   //页面titile
@@ -50,6 +55,8 @@ module.exports = function(app){
         //如果有错就给tag空值
         tags = [];
       }
+
+      Log.trace('这里是日志：Tag列表');
 
       //返回结果
       res.render('tag', {
