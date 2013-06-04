@@ -1,0 +1,77 @@
+<%- include header %>
+
+<!--内容-->
+<div class='post_list'>
+    <div class='post_title' id="Div_Title">
+        <%= article.title %>
+    </div>
+    <div class='post_content' id="Div_Content">
+        <%- article.content %>
+    </div>
+    <div class='post_info' id="Div_Info">
+        <%= article.date %>&nbsp;&nbsp;
+        <%= article.tag %>&nbsp;&nbsp;
+        <%= article.access %>&nbsp&nbsp;
+        <%= article.name %>&nbsp;&nbsp;
+        <a href='/tag' target='_blank'>tag</a>&nbsp;&nbsp;
+        推荐使用：
+        <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>
+	      <span aria-hidden="true" title="Firefox" class="icon-firefox"></span>
+	      <span aria-hidden="true" title="Opera" class="icon-opera"></span>
+	      <span aria-hidden="true" title="Safari" class="icon-safari"></span>
+	      <span aria-hidden="true" title="IE9+" class="icon-IE"></span>
+        <a href="../Feed" style="text-decoration:none;" target="_blank">
+        <span aria-hidden="true" title="订阅" style="color:#009933; cursor:pointer;" class="icon-feed"></span></a>
+        &nbsp;&nbsp;按q留言或<span id="SpanPost" style="text-decoration:underline; cursor:pointer;">点此</span>
+    </div>
+    <input type="hidden" id="Hid_Title" value="@<%= article.id %>" />
+</div>
+    
+<!--評論層-->
+<div class="post_list" id="Div_Reply" style="display:none;">
+    <form action="Comment" method="post" id="Comment">
+   	    <table width="580px" border="0" align="center">
+    	    <tr>
+    	        <td colspan="2" align="left">
+                    <textarea name="Txt_Content" placeholder="请在这里输入内容...." id="Txt_Content" style="width:99%; height:80px; border:1px solid #CCCCCC; border-radius:3px;"></textarea>
+                </td>
+   	        </tr>
+    	    <tr>
+    	        <td colspan="2" align="left">
+	                <span aria-hidden="true" class="icon-happy"></span>
+	                <span aria-hidden="true" class="icon-happy-2"></span>
+	                <span aria-hidden="true" class="icon-smiley"></span>
+	                <span aria-hidden="true" class="icon-smiley-2"></span>
+	                <span aria-hidden="true" class="icon-tongue"></span>
+	                <span aria-hidden="true" class="icon-tongue-2"></span>
+	                <span aria-hidden="true" class="icon-sad"></span>
+	                <span aria-hidden="true" class="icon-sad-2"></span>
+	                <span aria-hidden="true" class="icon-wink"></span>
+	                <span aria-hidden="true" class="icon-wink-2"></span>
+	                <span aria-hidden="true" class="icon-grin"></span>
+	                <span aria-hidden="true" class="icon-grin-2"></span>
+	                <span aria-hidden="true" class="icon-cool"></span>
+	                <span aria-hidden="true" class="icon-cool-2"></span>
+	                <span aria-hidden="true" class="icon-angry"></span>
+	                <span aria-hidden="true" class="icon-shocked"></span>
+	                <span aria-hidden="true" class="icon-shocked-2"></span>
+	                <span aria-hidden="true" class="icon-confused"></span>
+	                <span aria-hidden="true" class="icon-confused-2"></span>
+	                <span aria-hidden="true" class="icon-neutral"></span>
+	                <span aria-hidden="true" class="icon-neutral-2"></span>
+	                <span aria-hidden="true" class="icon-wondering"></span>
+	                <span aria-hidden="true" class="icon-wondering-2"></span>
+	                <span aria-hidden="true" class="icon-angry-2"></span>
+                </td>
+   	        </tr>
+            <tr>
+    	        <td width="500px" align="left">
+   	                <input type="text" name="Txt_Name" placeholder="请留下阁下的名号" id="Txt_Name" style="width:99%; height:24px; line-height:24px; border:1px solid #CCCCCC; border-radius:3px;" />
+                </td>
+                <td width="80px"><input type="button" name="Btn_Post" id="Btn_Post" style="width:90%; height:26px; line-height:26x; background-clip: padding-box; background-color:#e6e6e6; border:1px solid #cccccc; border-radius:3px; cursor:pointer;" value="送出" /></td>
+   	        </tr>
+  	    </table>
+    </form>
+</div>
+
+<%- include footer %>

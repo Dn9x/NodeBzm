@@ -1,14 +1,16 @@
 <%- include header %>
 <% articles.forEach(function(article, index){ %>
   <div class='post_list'>
-    <div class='post_title'><%= article.title %></div>
+    <div class='post_title'>
+      <a href='/detail/<%= article.id %>' target='_blank'><%= article.title %></a>
+    </div>
     <div class='post_content'><%- article.content %></div>
     <div class='post_info'>
       <%= article.date %>&nbsp;&nbsp;
       <%= article.tag %>&nbsp;&nbsp;
       <%= article.access %>&nbsp;&nbsp;
       <%= article.name %>&nbsp;&nbsp;
-      tag&nbsp;&nbsp;
+      <a href='/tag' target='_blank'>tag</a>&nbsp;&nbsp;
       推荐使用：
       <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>
       <span aria-hidden="true" title="Firefox" class="icon-firefox"></span>
@@ -23,9 +25,9 @@
   </div>
 <% }) %>
 
-  <div id='next_page' class='post_list'>
-    <div id="next_p" class='post_title'>加载下一页...</div>
-    <input type="hidden" id="Hid_Page" value="10" />
-  </div>
+<div id='next_page' class='post_list'>
+  <div id="next_p" class='post_title'>加载下一页...</div>
+  <input type="hidden" id="Hid_Page" value="10" />
+</div>
 
 <%- include footer %>
