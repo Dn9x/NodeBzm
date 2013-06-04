@@ -1,0 +1,60 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'felixge/node-mysql' ]
+2 info using npm@1.2.23
+3 info using node@v0.10.8
+4 verbose node symlink D:\Program Files\nodejs\\node.exe
+5 verbose read json D:\GitHub\NodeBzm\package.json
+6 warn package.json application-name@0.0.1 No repository field.
+7 warn package.json application-name@0.0.1 No readme data.
+8 verbose read json D:\GitHub\NodeBzm\node_modules\express\package.json
+9 verbose read json D:\GitHub\NodeBzm\node_modules\ejs\package.json
+10 verbose read json D:\GitHub\NodeBzm\node_modules\mysql\package.json
+11 verbose from cache D:\GitHub\NodeBzm\package.json
+12 verbose readDependencies using package.json deps
+13 verbose cache add [ 'felixge/node-mysql', null ]
+14 verbose cache add name=undefined spec="felixge/node-mysql" args=["felixge/node-mysql",null]
+15 verbose parsed url { protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'felixge/node-mysql',
+15 verbose parsed url   path: 'felixge/node-mysql',
+15 verbose parsed url   href: 'felixge/node-mysql' }
+16 silly lockFile 4f4f7be1-felixge-node-mysql felixge/node-mysql
+17 verbose lock felixge/node-mysql C:\Users\Administrator\AppData\Roaming\npm-cache\4f4f7be1-felixge-node-mysql.lock
+18 info maybeGithub Attempting felixge/node-mysql from git://github.com/felixge/node-mysql
+19 silly lockFile a6c4cfee-it-github-com-felixge-node-mysql git://github.com/felixge/node-mysql
+20 verbose lock git://github.com/felixge/node-mysql C:\Users\Administrator\AppData\Roaming\npm-cache\a6c4cfee-it-github-com-felixge-node-mysql.lock
+21 verbose addRemoteGit [ 'git://github.com/felixge/node-mysql', 'master' ]
+22 silly lockFile a6c4cfee-it-github-com-felixge-node-mysql git://github.com/felixge/node-mysql
+23 silly lockFile a6c4cfee-it-github-com-felixge-node-mysql git://github.com/felixge/node-mysql
+24 info maybeGithub Attempting felixge/node-mysql from git+ssh://git@github.com:felixge/node-mysql
+25 silly lockFile 9eeaec8a-it-github-com-felixge-node-mysql git+ssh://git@github.com:felixge/node-mysql
+26 verbose lock git+ssh://git@github.com:felixge/node-mysql C:\Users\Administrator\AppData\Roaming\npm-cache\9eeaec8a-it-github-com-felixge-node-mysql.lock
+27 verbose addRemoteGit [ 'git@github.com:felixge/node-mysql', 'master' ]
+28 silly lockFile 246b2140-it-github-com-felixge-node-mysql git@github.com:felixge/node-mysql
+29 silly lockFile 4f4f7be1-felixge-node-mysql felixge/node-mysql
+30 silly lockFile 4f4f7be1-felixge-node-mysql felixge/node-mysql
+31 error addLocal Could not install felixge/node-mysql
+32 error Error: ENOENT, stat 'D:\GitHub\NodeBzm\felixge\node-mysql'
+33 error If you need help, you may report this log at:
+33 error     <http://github.com/isaacs/npm/issues>
+33 error or email it to:
+33 error     <npm-@googlegroups.com>
+34 error System Windows_NT 6.1.7600
+35 error command "D:\\Program Files\\nodejs\\\\node.exe" "D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "felixge/node-mysql"
+36 error cwd D:\GitHub\NodeBzm
+37 error node -v v0.10.8
+38 error npm -v 1.2.23
+39 error path D:\GitHub\NodeBzm\felixge\node-mysql
+40 error code ENOENT
+41 error errno 34
+42 verbose exit [ 34, true ]
