@@ -196,38 +196,6 @@
 	text-align:center;
 }
 
-.auth_list
-{
-	width:600px;
-	height:auto;
-	margin:20px auto;
-	border:0px solid #CCCCCC;
-	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
-	padding:10px 10px;
-	color:#FFFFFF;
-	text-align:left;
-	font-size:12px;
-}
-
-.auth_list_title
-{
-	margin-top:80px;
-	font-size:28px;
-	font-weight:bold;
-}
-
-.auth_list_spce
-{
-	height:321px;
-}
-
-.auth_a
-{
-	color:#AAAAAA;
-	text-decoration:underline;
-	cursor:pointer;
-}
-
 .detail_a
 {
 	color:#046380;
@@ -285,17 +253,24 @@
     text-decoration: none;
 }
 
-.tag_list_title
+.p404
 {
-	margin:2px auto 0px auto; 
-	width:94%; 
-	height:30px; 
-	line-height:30px;
-	font-size:20px;
 	color:#046380;
-	padding:1px 10px;
-	border:1px solid #CCC; 
-	cursor:pointer;
+	text-decoration:none;
+	font-size:40px;
+	line-height:80px;
+	font-weight:bold;
+	text-align:center;
+	width:96%;
+	height:80px;
+	margin:2px auto;
+	border:0px solid #CCC;
+	z-index:3;
+	font-family:'Comic Sans MS',cursive;
+}
+.p404m
+{
+	text-align:right;
 }
 
 

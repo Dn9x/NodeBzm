@@ -14,8 +14,6 @@ module.exports = function(app){
     		articles = [];
     	}
 
-      Log.error('这里是日志：首页文章列表');
-
     	//返回结果
   		res.render('index', {
   			title: '做梦也很累',   //页面titile
@@ -24,6 +22,15 @@ module.exports = function(app){
   	});
   });
 
+  //验证ID必须为数字
+  app.param('id', function(req, res, next){
+    if(!isNaN(req.params.id)){
+      next();
+    }else{
+      set404('404', req, res);
+    }
+  })
+
   //获取文章详情
   app.get('/detail/:id',function(req,res){
     //获取文章列表信息
@@ -31,17 +38,20 @@ module.exports = function(app){
 
       //判断是否有错
       if(err){
+        console.log(err);
         //如果有错就给文章空值
         article = [];
       }
 
-      Log.log('这里是日志：文章详情');
-
-      //返回结果
-      res.render('detail', {
-        title: article.title,   //页面titile
-        article: article     //文章内容
-      });
+      if(article == null){
+        set404('404', req, res);
+      }else{
+        //返回结果
+        res.render('detail', {
+          title: article.title,   //页面titile
+          article: article     //文章内容
+        });
+      }
     });
   });
 
@@ -55,8 +65,6 @@ module.exports = function(app){
         //如果有错就给tag空值
         tags = [];
       }
-
-      Log.trace('这里是日志：Tag列表');
 
       //返回结果
       res.render('tag', {
@@ -108,8 +116,20 @@ module.exports = function(app){
     });
   });
 
-
-
-
+  //处理404页面
+  app.get('*', function(req, res) {
+    set404('404', req, res);
+  })
 
 };
+
+//处理404
+function set404(msg, req, res){
+  Log.error('404 %s %s', req.method, req.url);
+
+  res.render('404', {
+    status: 404,
+    title: '404',
+    msg: msg
+  });
+}
