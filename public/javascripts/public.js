@@ -45,39 +45,39 @@
 
         if (name != null && content != null) {
             //加載初始
-            $.getJSON(
-            "/Home/Comments",
-            { "title": title, "name": name, "content": content },
-            function (json, status) {
-                if (status = "success") {
-                    var list = "";
+            $.post(
+                "/comment",
+                { "aid": title, "name": name, "content": content },
+                function (json, status) {
+                    if (status = "success") {
+                        var list = "";
 
-                    if (json == null || json.length == 0) {
-                        $("#Txt_Content").val("别开玩笑了对我.....");
+                        if (json == null || json.length == 0) {
+                            $("#Txt_Content").val("别开玩笑了对我.....");
 
-                        $("#Btn_Post").removeAttr("disabled");
-                    } else {
-                        $.each(json, function (i, item) {
-                            list += "<div class='reply_list'><table width='580' height='auto' border='0' align='center'>" +
-                        "<tr><td style='width:72px;' rowspan='2' align='center' valign='top'>" +
-                        "<img src='../../Content/images/head.jpg' width='50' height='50' alt='" + item.User + "' title='" + item.User + "' /></td>" +
-                        "<td align='left' style='width:498px; font-size:11px; color:#555;'>" + item.User + "&nbsp;&nbsp;" + item.Date + "</td>" +
-                        "</tr><tr>" +
-                        "<td align='left'>" +
-                        "<div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>" + item.Content + "</div></td>" +
-                        "</tr></table></div>";
-                        });
+                            $("#Btn_Post").removeAttr("disabled");
+                        } else {
+                            $.each(json, function (i, item) {
+                                list += "<div class='reply_list'><table width='580' height='auto' border='0' align='center'>" +
+                            "<tr><td style='width:72px;' rowspan='2' align='center' valign='top'>" +
+                            "<img src='../../Content/images/head.jpg' width='50' height='50' alt='" + item.User + "' title='" + item.User + "' /></td>" +
+                            "<td align='left' style='width:498px; font-size:11px; color:#555;'>" + item.User + "&nbsp;&nbsp;" + item.Date + "</td>" +
+                            "</tr><tr>" +
+                            "<td align='left'>" +
+                            "<div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>" + item.Content + "</div></td>" +
+                            "</tr></table></div>";
+                            });
 
-                        $(".reply_list").remove();
-                        $("#Div_Reply").css("display", "none");
-                        $("#Txt_Content").val("");
-                        $("#Btn_Post").removeAttr("disabled");
+                            $(".reply_list").remove();
+                            $("#Div_Reply").css("display", "none");
+                            $("#Txt_Content").val("");
+                            $("#Btn_Post").removeAttr("disabled");
 
-                        $("#Div_Reply").after(list);
+                            $("#Div_Reply").after(list);
+                        }
                     }
                 }
-            }
-        );
+            );
         }
     }).mouseover(function () {
         $(this).css("background", "#DFDFDF");

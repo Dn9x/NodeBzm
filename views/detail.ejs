@@ -24,16 +24,15 @@
         <span aria-hidden="true" title="订阅" style="color:#009933; cursor:pointer;" class="icon-feed"></span></a>
         &nbsp;&nbsp;按q留言或<span id="SpanPost" style="text-decoration:underline; cursor:pointer;">点此</span>
     </div>
-    <input type="hidden" id="Hid_Title" value="@<%= article.id %>" />
 </div>
     
 <!--評論層-->
 <div class="post_list" id="Div_Reply" style="display:none;">
-    <form action="Comment" method="post" id="Comment">
+    <form action="/comment" method="post" id="Comment">
    	    <table width="580px" border="0" align="center">
     	    <tr>
     	        <td colspan="2" align="left">
-                    <textarea name="Txt_Content" placeholder="请在这里输入内容...." id="Txt_Content" style="width:99%; height:80px; border:1px solid #CCCCCC; border-radius:3px;"></textarea>
+                    <textarea name="content" placeholder="请在这里输入内容...." id="Txt_Content" style="width:99%; height:80px; border:1px solid #CCCCCC; border-radius:3px;"></textarea>
                 </td>
    	        </tr>
     	    <tr>
@@ -66,12 +65,37 @@
    	        </tr>
             <tr>
     	        <td width="500px" align="left">
-   	                <input type="text" name="Txt_Name" placeholder="请留下阁下的名号" id="Txt_Name" style="width:99%; height:24px; line-height:24px; border:1px solid #CCCCCC; border-radius:3px;" />
+   	                <input type="text" name="name" placeholder="请留下阁下的名号" id="Txt_Name" style="width:99%; height:24px; line-height:24px; border:1px solid #CCCCCC; border-radius:3px;" />
                 </td>
-                <td width="80px"><input type="button" name="Btn_Post" id="Btn_Post" style="width:90%; height:26px; line-height:26x; background-clip: padding-box; background-color:#e6e6e6; border:1px solid #cccccc; border-radius:3px; cursor:pointer;" value="送出" /></td>
+                <td width="80px">
+                <input type="hidden" id="Hid_Title" name="aid" value="<%= article.id %>" />
+                <input type="submit" name="Btn_Post1" id="Btn_Post1" style="width:90%; height:26px; line-height:26x; background-clip: padding-box; background-color:#e6e6e6; border:1px solid #cccccc; border-radius:3px; cursor:pointer;" value="送出" />
+                </td>
    	        </tr>
   	    </table>
     </form>
 </div>
+
+<%comments.forEach(function(comment, index){%>
+<div class='reply_list'>
+    <table width='580' height='auto' border='0' align='center'>
+        <tr>
+            <td style='width:72px;' rowspan='2' align='center' valign='top'>
+            <img src='/images/head.jpg"' width='50' height='50' alt='<%=comment.name%>' title='<%=comment.name%>' />
+            </td>
+            <td align='left' style='width:498px; font-size:11px; color:#555;'>
+            <%=comment.name%>&nbsp;&nbsp;<%=comment.date %>
+            </td>
+        </tr>
+        <tr>
+            <td align='left'>
+            <div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>
+            <%=comment.content%>
+            </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<%}%>
 
 <%- include footer %>
