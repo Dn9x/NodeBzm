@@ -8,20 +8,26 @@ function Comment(aid, name, content){
 
 module.exports = Comment;
 
-//查询评论列表的方法 一次20条
-Comment.getTwen = function(aid, page, callback){
+/**
+ * 查询评论列表的方法 一次15条
+ * Callback:
+ * - err, 数据库错误
+ * @param {int} aid 文章的ID
+ * @param {int} page 分页的其实索引
+ * @param {Function} callback 回调函数
+ */
+Comment.getTwes = function(aid, page, callback){
 
 	//从连接池中获取一个连接
 	db.getConnection(function(err, connection) {
 
 	  //查询
-	  connection.query('select comm_user as name, comm_content as content, comm_date as date, comm_articleid as aid from bzm_comment where comm_articleid=? order by comm_date desc limit ?, 10', [aid], [page], function(err, comments) {
+	  connection.query('select comm_user as name, comm_content as content, date_format(comm_date+\'\', \'%Y-%m-%d %H:%m:%S\') as date, comm_articleid as aid from bzm_comment where comm_articleid=? order by comm_date desc limit ?, 15', [aid, page], function(err, comments) {
 		if (err){
-		  console.log('111:' + err);
+		  console.log('111: %s', err);
 		  callback(err, null);
 		}
 
-		  console.log('222:' + comments);
 		callback(null, comments);
 
 		connection.end();		//使用完之后断开连接，放回连接池
@@ -30,7 +36,13 @@ Comment.getTwen = function(aid, page, callback){
 	});
 };
 
-//添加评论
+/**
+ * 添加评论
+ * Callback:
+ * - err, 数据库错误
+ * @param {Comment} comm Comment对象
+ * @param {Function} callback 回调函数
+ */
 Comment.prototype.addOne = function(comm, callback){
 
 	//从连接池中获取一个连接

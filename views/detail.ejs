@@ -69,19 +69,19 @@
                 </td>
                 <td width="80px">
                 <input type="hidden" id="Hid_Title" name="aid" value="<%= article.id %>" />
-                <input type="submit" name="Btn_Post1" id="Btn_Post1" style="width:90%; height:26px; line-height:26x; background-clip: padding-box; background-color:#e6e6e6; border:1px solid #cccccc; border-radius:3px; cursor:pointer;" value="送出" />
+                <input type="submit" name="Btn_Post" id="Btn_Post" style="width:90%; height:26px; line-height:26x; background-clip: padding-box; background-color:#e6e6e6; border:1px solid #cccccc; border-radius:3px; cursor:pointer;" value="送出" />
                 </td>
    	        </tr>
   	    </table>
     </form>
 </div>
 
-<%comments.forEach(function(comment, index){%>
+<% comments.forEach(function(comment, index){ %>
 <div class='reply_list'>
     <table width='580' height='auto' border='0' align='center'>
         <tr>
             <td style='width:72px;' rowspan='2' align='center' valign='top'>
-            <img src='/images/head.jpg"' width='50' height='50' alt='<%=comment.name%>' title='<%=comment.name%>' />
+            <img src='/images/head.jpg' width='50' height='50' alt='<%=comment.name%>' title='<%=comment.name%>' />
             </td>
             <td align='left' style='width:498px; font-size:11px; color:#555;'>
             <%=comment.name%>&nbsp;&nbsp;<%=comment.date %>
@@ -96,6 +96,6 @@
         </tr>
     </table>
 </div>
-<%}%>
+<% }) %>
 
 <%- include footer %>

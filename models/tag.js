@@ -7,7 +7,12 @@ function Tag(name, code){
 
 module.exports = Tag;
 
-//查询Tag列表的方法
+/**
+ * 查询Tag列表的方法
+ * Callback:
+ * - err, 数据库错误
+ * @param {Function} callback 回调函数
+ */
 Tag.getList = function(callback){
 
 	//从连接池中获取一个连接
@@ -27,7 +32,14 @@ Tag.getList = function(callback){
 	});
 };
 
-//查询Tag列表通过关键字的方法
+/**
+ * 查询Tag列表通过关键字的方法
+ * Callback:
+ * - err, 数据库错误
+ * @param {string} key 查询的关键字
+ * @param {int} page   分页的其实索引
+ * @param {Function} callback 回调函数
+ */
 Tag.getLiByKey = function(key, page, callback){
 
 	//从连接池中获取一个连接

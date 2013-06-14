@@ -2,12 +2,14 @@
 var Article = require('../models/article.js');
 var Tag = require('../models/tag.js');
 var Comment = require('../models/comment.js');
+var config = require('../config');
+var data2xml = require('../node_modules/data2xml');
 var Log = require('../models/log.js');
 
 module.exports = function(app){
   app.get('/',function(req,res){
   	//获取文章列表信息
-    Article.getTen(0, function(err, articles){
+    Article.getTen(0, 1, function(err, articles){
 
     	//判断是否有错
     	if(err){
@@ -21,6 +23,28 @@ module.exports = function(app){
   			articles: articles	   //文章列表
   		});
   	});
+  });
+
+  app.post('/nextp',function(req, res){
+
+    console.log(req.body.id);
+
+    //获取文章列表信息
+    Article.getTen(parseInt(req.body.id), 1, function(err, articles){
+
+      //判断是否有错
+      if(err){
+
+      console.log(err);
+        //如果有错就给文章空值
+        articles = [];
+      }
+
+      Log.log('json' + articles);
+
+      //返回结果
+      res.json(articles);
+    });
   });
 
   //验证ID必须为数字
@@ -39,24 +63,20 @@ module.exports = function(app){
 
       //判断是否有错
       if(err){
-        console.log(err);
         //如果有错就给文章空值
         article = [];
       }
 
-      console.log('555: %s', Comment);
-
       //查询评论列表
-      Comment.getTwen(req.params.id, 0, function(err, comments){
+      Comment.getTwes(req.params.id, 0, function(err, comments){
         if(err){
-
-          console.log('222: %s', err);
           comments: [];
         }
 
         if(article == null){
           set404('404', req, res);
         }else{
+
           //返回结果
           res.render('detail', {
             title: article.title,   //页面titile
@@ -131,19 +151,62 @@ module.exports = function(app){
 
   //添加评论
   app.post('/comment', function(req, res){
-    //保存数据
-    var comment = new Comment(req.body.aid, req.body.name, req.body.content);
 
-    //添加
-    comment.addOne(comment, function(err, result){
+    //判断是否有为空的数据
+    if(req.body.aid.length > 0 && req.body.name.length > 0 && req.body.content.length > 0){
+      //保存数据
+      var comment = new Comment(req.body.aid, req.body.name, req.body.content);
+
+      //添加
+      comment.addOne(comment, function(err, result){
+        if(err){
+          set404('404', req, res);
+        }
+
+        res.redirect('/detail/' + req.body.aid);
+      });
+    }
+  });
+
+  //获取rss
+  app.get('/feed',function(req, res){
+    //获取文章列表信息
+    Article.getTen(0, config.rss.max_rss_items, function(err, articles){
+
+      //判断是否有错
       if(err){
-        
-        console.log('222:错误 %s', err);
+        //如果有错就给文章空值
+        articles = [];
       }
-      
-      console.log('333:插入成功 %s', result);
 
-      res.redirect('/detail/' + req.body.aid);
+      //rss对象
+      var rss_obj = {
+        _attr: { version: '2.0' },
+        channel: {
+          title: config.rss.title,
+          link: config.rss.link,
+          language: config.rss.language,
+          description: config.rss.description,
+          item: []
+        },
+      };
+
+      articles.forEach(function (article) {
+        rss_obj.channel.item.push({
+          title: article.title,
+          link: config.rss.link + '/detail/' + article.id,
+          guid: config.rss.link + '/topic/' + article.id,
+          description: article.content,
+          author: article.name,
+          pubDate: article.date
+        });
+      });
+
+      var rss_content = data2xml('rss', rss_obj);
+
+      res.contentType('application/xml');
+      res.send(rss_content);
+      
     });
   });
 

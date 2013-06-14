@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "express": "3.2.5",
-    "ejs": "*"
+    "ejs": "*",
+    "data2xml": "0.4.0"
   }
 }

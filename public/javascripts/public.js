@@ -16,70 +16,58 @@
 
         //加載初始
         $.post(
-            "/Home/NextPage",
+            "/nextp",
             { "id": page },
             function (dats, status) {
                 if (status = "success") {
-                    var data = {
-                        count: dats.substr(0, dats.indexOf("&DS")),
-                        list: [eval('(' + dats.substr(dats.indexOf("&DS") + 3) + ')')]
-                    };
+                    var list = "";
 
-                    var html = template.render('lists', data);
+                    $.each(dats, function(i, item){
+                        list += "<div class='post_list'>"
+                        + "<div class='post_title'>"
+                        + "<a href='/detail/"+item.id+"' target='_blank' class='detail_a'>"+item.title+"</a></div>"
+                        + "<div class='post_content'>"+item.content+"</div>"
+                        + "<div class='post_info'>"+item.date+"&nbsp;&nbsp;"+ item.tag + "&nbsp&nbsp"+item.access
+                        + "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'>"+item.name+"</a>"
+                        + "&nbsp&nbsp<a href='/tag' target='_blank' class='auth_a'>Tags</a>"
+                        + "&nbsp;&nbsp;订阅：<a href='/feed' style='text-decoration:none;' target='_blank'>"
+                        + "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>"
+                        + "</div></div>";
+                    });
 
-                    $("#Hid_Page").val(Number(page) + 10);
+                    var html = list;
+
+                    $("#Hid_Page").val(Number(page) + 1);
 
                     $("#next_page").before(html);
+
+                    prettyPrint();
                 }
             }
         );
     });
 
-    //添加评论
-    $("#Btn_Post").click(function () {
-        $("#Btn_Post").attr("disabled", "disabled");
-
-        var title = $("#Hid_Title").val();
-        var name = $("#Txt_Name").val();
+    //评论提交
+    $("#Comment").submit(function(){
         var content = $("#Txt_Content").val();
+        var user = $("#Txt_Name").val();
 
-        if (name != null && content != null) {
-            //加載初始
-            $.post(
-                "/comment",
-                { "aid": title, "name": name, "content": content },
-                function (json, status) {
-                    if (status = "success") {
-                        var list = "";
+        //判断
+        if(content.length == 0){
+            $("#Txt_Content").val("请输入评论内容").css("color", "red");
 
-                        if (json == null || json.length == 0) {
-                            $("#Txt_Content").val("别开玩笑了对我.....");
+            return false;
+        }else if(user.length == 0){
+            $("#Txt_Name").val("请输入您的名称").css("color", "red");
 
-                            $("#Btn_Post").removeAttr("disabled");
-                        } else {
-                            $.each(json, function (i, item) {
-                                list += "<div class='reply_list'><table width='580' height='auto' border='0' align='center'>" +
-                            "<tr><td style='width:72px;' rowspan='2' align='center' valign='top'>" +
-                            "<img src='../../Content/images/head.jpg' width='50' height='50' alt='" + item.User + "' title='" + item.User + "' /></td>" +
-                            "<td align='left' style='width:498px; font-size:11px; color:#555;'>" + item.User + "&nbsp;&nbsp;" + item.Date + "</td>" +
-                            "</tr><tr>" +
-                            "<td align='left'>" +
-                            "<div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>" + item.Content + "</div></td>" +
-                            "</tr></table></div>";
-                            });
-
-                            $(".reply_list").remove();
-                            $("#Div_Reply").css("display", "none");
-                            $("#Txt_Content").val("");
-                            $("#Btn_Post").removeAttr("disabled");
-
-                            $("#Div_Reply").after(list);
-                        }
-                    }
-                }
-            );
+            return false;
+        }else{
+            $("#Comment").submit();
         }
-    }).mouseover(function () {
+    })
+
+    //添加评论
+    $("#Btn_Post").mouseover(function () {
         $(this).css("background", "#DFDFDF");
     }).mouseout(function () {
         $(this).css("background", "#e6e6e6");
@@ -110,6 +98,25 @@
     });
 
 });
+
+function TempSource(){
+    var source =
+        "<% for (var i = 0; i < 1; i ++) { %>" +
+        "<div class='post_list'>" +
+        "<div class='post_title'>" +
+        "<a href='Home/Detail/<%= list[0].ID %>' target='_blank' class='detail_a'><%= list[0].title %></a></div>" +
+        "<div class='post_content'><%== list[0].content %></div>" +
+        "<div class='post_info'><%= list[0].date %>&nbsp;&nbsp;<%= list[0].tag %>" +
+        "&nbsp&nbsp<%= list[0].access %>" +
+        "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'><%= list[0].name %></a>" +
+        "&nbsp&nbsp<a href='Home/Tags' target='_blank' class='auth_a'>Tags</a>" +
+        "&nbsp;&nbsp;订阅：<a href='Home/Feed' style='text-decoration:none;' target='_blank'>" +
+        "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>" +
+        "</div></div>" +
+        "<% } %>";
+
+    return source;
+}
 
 function ChangeBrowser() {
     var browserName = navigator.userAgent.toLowerCase();
