@@ -138,7 +138,7 @@
 	font-family:'Comic Sans MS',cursive;
 }
 
-#next_page div
+.next_p div
 {
 	text-align:center;
 	cursor:pointer;
@@ -272,6 +272,3 @@
 {
 	text-align:right;
 }
-
-
-

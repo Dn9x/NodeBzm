@@ -10,7 +10,7 @@
     //字体高亮
     prettyPrint();
 
-    //下一頁
+    //首页文章下一頁
     $("#next_p").click(function () {
         var page = $("#Hid_Page").val();
 
@@ -18,6 +18,49 @@
         $.post(
             "/nextp",
             { "id": page },
+            function (dats, status) {
+                if (status = "success") {
+                    var list = "";
+
+                    $.each(dats, function(i, item){
+                        list += "<div class='post_list'>"
+                        + "<div class='post_title'>"
+                        + "<a href='/detail/"+item.id+"' target='_blank' class='detail_a'>"+item.title+"</a></div>"
+                        + "<div class='post_content'>"+item.content+"</div>"
+                        + "<div class='post_info'>"+item.date+"&nbsp;&nbsp;"+ item.tag + "&nbsp&nbsp"+item.access
+                        + "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'>"+item.name+"</a>"
+                        + "&nbsp&nbsp<a href='/tag' target='_blank' class='auth_a'>Tags</a>"
+                        + "&nbsp;&nbsp;订阅：<a href='/feed' style='text-decoration:none;' target='_blank'>"
+                        + "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>"
+                        + "</div></div>";
+                    });
+
+                    var html = list;
+
+                    $("#Hid_Page").val(Number(page) + 1);
+
+                    $("#next_page").before(html);
+
+                    prettyPrint();
+                }
+            }
+        );
+    });
+
+    //Tag文章下一頁
+    $("#next_t").click(function () {
+        var page = $("#Hid_Page").val();
+
+        var url = location.href;            //获取url
+
+        var ind = url.lastIndexOf("/");     //获取最后一个/的位置
+
+        var key = url.substr(ind+1, url.length-ind-1);
+
+        //加載初始
+        $.post(
+            "/nextt",
+            { "id": page, "key": key },
             function (dats, status) {
                 if (status = "success") {
                     var list = "";
@@ -99,24 +142,6 @@
 
 });
 
-function TempSource(){
-    var source =
-        "<% for (var i = 0; i < 1; i ++) { %>" +
-        "<div class='post_list'>" +
-        "<div class='post_title'>" +
-        "<a href='Home/Detail/<%= list[0].ID %>' target='_blank' class='detail_a'><%= list[0].title %></a></div>" +
-        "<div class='post_content'><%== list[0].content %></div>" +
-        "<div class='post_info'><%= list[0].date %>&nbsp;&nbsp;<%= list[0].tag %>" +
-        "&nbsp&nbsp<%= list[0].access %>" +
-        "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'><%= list[0].name %></a>" +
-        "&nbsp&nbsp<a href='Home/Tags' target='_blank' class='auth_a'>Tags</a>" +
-        "&nbsp;&nbsp;订阅：<a href='Home/Feed' style='text-decoration:none;' target='_blank'>" +
-        "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>" +
-        "</div></div>" +
-        "<% } %>";
-
-    return source;
-}
 
 function ChangeBrowser() {
     var browserName = navigator.userAgent.toLowerCase();

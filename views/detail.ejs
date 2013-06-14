@@ -76,26 +76,33 @@
     </form>
 </div>
 
-<% comments.forEach(function(comment, index){ %>
-<div class='reply_list'>
-    <table width='580' height='auto' border='0' align='center'>
-        <tr>
-            <td style='width:72px;' rowspan='2' align='center' valign='top'>
-            <img src='/images/head.jpg' width='50' height='50' alt='<%=comment.name%>' title='<%=comment.name%>' />
-            </td>
-            <td align='left' style='width:498px; font-size:11px; color:#555;'>
-            <%=comment.name%>&nbsp;&nbsp;<%=comment.date %>
-            </td>
-        </tr>
-        <tr>
-            <td align='left'>
-            <div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>
-            <%=comment.content%>
-            </div>
-            </td>
-        </tr>
-    </table>
-</div>
-<% }) %>
+<% if(comments.length > 0){ %>
+    <% comments.forEach(function(comment, index){ %>
+    <div class='reply_list'>
+        <table width='580' height='auto' border='0' align='center'>
+            <tr>
+                <td style='width:72px;' rowspan='2' align='center' valign='top'>
+                <img src='/images/head.jpg' width='50' height='50' alt='<%=comment.name%>' title='<%=comment.name%>' />
+                </td>
+                <td align='left' style='width:498px; font-size:11px; color:#555;'>
+                <%=comment.name%>&nbsp;&nbsp;<%=comment.date %>&nbsp;&nbsp;&nbsp;&nbsp;#<%= index %>
+                </td>
+            </tr>
+            <tr>
+                <td align='left'>
+                <div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>
+                <%=comment.content%>
+                </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <% }) %>
+
+    <div id='next_page' class='post_list next_p'>
+      <div id="next_comm" class='post_title'>继续加载...</div>
+      <input type="hidden" id="Hid_Page" value="1" />
+    </div>
+<% } %>
 
 <%- include footer %>

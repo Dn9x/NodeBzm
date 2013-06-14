@@ -25,6 +25,7 @@ module.exports = function(app){
   	});
   });
 
+  //首页文章下一页
   app.post('/nextp',function(req, res){
 
     console.log(req.body.id);
@@ -41,6 +42,34 @@ module.exports = function(app){
       }
 
       Log.log('json' + articles);
+
+      //返回结果
+      res.json(articles);
+    });
+  });
+
+  //tag文章下一页
+  app.post('/nextt', function(req, res){
+    var key;
+
+    //过滤C#关键字
+    if(req.body.key == 'C'){
+      key = 'C#';
+    }else{
+      key = req.body.key;
+    }
+
+    //获取tag列表信息
+    Tag.getLiByKey(key, parseInt(req.body.id), function(err, articles){
+
+      //判断是否有错
+      if(err){
+        //如果有错就给tag空值
+        articles = [];
+      }
+
+
+      Log.log('articles json:  ' + articles);
 
       //返回结果
       res.json(articles);
