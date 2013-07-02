@@ -272,3 +272,28 @@
 {
 	text-align:right;
 }
+
+.auth_list
+{
+	width:600px;
+	height:auto;
+	margin:20px auto;
+	border:0px solid #CCCCCC;
+	/*font-family:Arial,Tahoma,Verdana;*/font-family:'Comic Sans MS',cursive;
+	padding:10px 10px;
+	color:#FFFFFF;
+	text-align:left;
+	font-size:12px;
+}
+
+.auth_list_title
+{
+	margin-top:80px;
+	font-size:28px;
+	font-weight:bold;
+}
+
+.auth_list_spce
+{
+	height:321px;
+}

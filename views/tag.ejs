@@ -20,10 +20,12 @@
     </div>
     <div class='post_content'><%- article.content %></div>
     <div class='post_info'>
-      <%= article.date.toUTCString() %>&nbsp;&nbsp;
+      <%= article.date %>&nbsp;&nbsp;
       <%= article.tag %>&nbsp;&nbsp;
       <%= article.access %>&nbsp;&nbsp;
-      <%= article.name %>&nbsp;&nbsp;
+      <a href='/about' target='_blank'>
+        <%= article.name %>
+      </a>&nbsp;&nbsp;
       <a href='/tag' target='_blank'>tag</a>&nbsp;&nbsp;
       推荐使用：
       <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>
@@ -43,6 +45,5 @@
   <div id="next_t" class='post_title'>加载下一页...</div>
   <input type="hidden" id="Hid_Page" value="5" />
 </div>
-
 
 <%- include footer %>

@@ -10,9 +10,13 @@
     </div>
     <div class='post_info' id="Div_Info">
         <%= article.date %>&nbsp;&nbsp;
-        <%= article.tag %>&nbsp;&nbsp;
+        <a href='/tag/<%= article.tag %>' target='_blank'>
+          <%= article.tag %>
+        </a>&nbsp;&nbsp;
         <%= article.access %>&nbsp&nbsp;
-        <%= article.name %>&nbsp;&nbsp;
+        <a href='/about' target='_blank'>
+        <%= article.name %>
+        </a>&nbsp;&nbsp;
         <a href='/tag' target='_blank'>tag</a>&nbsp;&nbsp;
         推荐使用：
         <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>
@@ -100,8 +104,8 @@
     <% }) %>
 
     <div id='next_page' class='post_list next_p'>
-      <div id="next_comm" class='post_title'>继续加载...</div>
-      <input type="hidden" id="Hid_Page" value="1" />
+      <div id="next_c" class='post_title'>继续加载...</div>
+      <input type="hidden" id="Hid_Page" value="15" />
     </div>
 <% } %>
 

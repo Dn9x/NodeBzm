@@ -1,0 +1,49 @@
+
+<link rel="stylesheet" href="/styles/timeline.css" />
+<style type="text/css">
+* {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+</style>
+
+<!--ShowMsg-->
+<div id="Container">
+  <div class="timeline_container">
+    <div class="timeline">
+      <div class="plus"></div>
+      <div class="plus2"></div>
+    </div>
+  </div>
+
+  <% articles.forEach(function(article, index){ %>
+    <div class="item">
+      <h3><span class="fr"><%= article.date %>&nbsp;&nbsp;<%= article.name %>&nbsp;&nbsp;<%= article.access %></span></h3>
+      <p class="con"><a href='/detail/<%= article.id %>' target='_blank'><%= article.title %></a></p>
+    </div>
+
+  <% }) %>
+</div>
+<!--/ShowMsg-->
+
+<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/javascripts/timeline.plug.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  /*时间轴*/
+  $('#Container').masonry({itemSelector : '.item'});
+	function Arrow_Points(){
+	  var s = $("#Container").find(".item");
+	  $.each(s,function(i,obj){
+		var posLeft = $(obj).css("left");
+		if(posLeft == "0px"){
+		  html = "<span class='rightCorner'></span>";
+		  $(obj).prepend(html);
+		} else {
+		  html = "<span class='leftCorner'></span>";
+		  $(obj).prepend(html);
+		}
+	  });
+	}
+	Arrow_Points();
+});
+</script>

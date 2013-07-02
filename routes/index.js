@@ -76,9 +76,26 @@ module.exports = function(app){
     });
   });
 
+  //评论下一页
+  app.post('/nextc', function(req, res){
+    //查询评论列表
+    Comment.getTwes(parseInt(req.body.title), parseInt(req.body.ind), function(err, comments){
+      if(err){
+        comments: [];
+      }
+
+      Log.log('nextc : %s,  %s ', req.body.title, req.body.ind);
+
+      //返回结果
+      res.json(comments);
+    });
+  });
+
   //验证ID必须为数字
   app.param('id', function(req, res, next){
     if(!isNaN(req.params.id)){
+      Article.addAcce(req.params.id, function(err, reslut){});
+
       next();
     }else{
       set404('404', req, res);
@@ -239,6 +256,54 @@ module.exports = function(app){
     });
   });
 
+  //about
+  app.get('/about',function(req,res){
+    //返回结果
+    res.render('about', {
+      title: 'About Dn9x',   //页面titile
+    });
+  });
+
+  //获取tag列表
+  app.get('/time',function(req,res){
+    //获取文章列表信息
+    Article.getAll(function(err, articles){
+
+      //判断是否有错
+      if(err){
+        //如果有错就给文章空值
+        articles = [];
+      }
+
+      //返回结果
+      res.render('time', {
+        title: '时间轴',   //页面titile
+        articles: articles     //文章列表
+      });
+    });
+  });
+
+  //获取tag列表
+  app.get('/timeline',function(req,res){
+    //获取文章列表信息
+    Article.getAll(function(err, articles){
+
+      //判断是否有错
+      if(err){
+        //如果有错就给文章空值
+        articles = [];
+      }
+
+      var en = setJson(articles);
+
+      //返回结果
+      res.render('timeline', {
+        title: '时间轴',   //页面titile
+        en: en     //文章列表
+      });
+    });
+  });
+
 
   //处理404页面
   app.get('*', function(req, res) {
@@ -256,4 +321,21 @@ function set404(msg, req, res){
     title: '404',
     msg: msg
   });
+}
+
+//拼接时光轴数据
+function setJson(arts){
+  var en = '[{id : 1, name : "别做梦创建", on : new Date(2011,2,2)}';
+
+  arts.forEach(function(art, index){ 
+    var d = art.date;
+
+    var da = d.substr(0, 4) + ', ' + d.substr(5, 2) + ', ' + d.substr(8, 2);
+
+    en += ',{' + 'id :' + (index+2) + ', name :"<a href=\'/detail/'+art.id+'\' target=\'_blank\'>' + art.title + '</a>"' + ', on :new Date(' + da + ')' + '}';
+  })
+
+  en += ']';
+
+  return en;
 }

@@ -70,3 +70,63 @@ Article.getOne = function(id, callback){
 	  });
 	});
 };
+
+/**
+ * 记录文章的访问量
+ * Callback:
+ * - err, 数据库错误
+ * @param {int} id 文章的ID
+ * @param {Function} callback 回调函数
+ */
+Article.addAcce = function(id, callback){
+
+	//从连接池中获取一个连接
+	db.getConnection(function(err, connection) {
+	  var sql = 'update bzm_article set article_access = article_access + 1 where id=' + connection.escape(id);
+
+	  //查询
+	  connection.query(sql, function(err, result) {
+
+		if (err){
+		  callback(err, null);
+		}
+
+		callback(null, result);
+
+		connection.end();		//使用完之后断开连接，放回连接池
+		//connection.destroy();	//使用之后释放资源，下次使用重新连接
+	  });
+	});
+};
+
+
+/**
+ * 查询所有文章的标题和时间
+ * Callback:
+ * - err, 数据库错误
+ * @param {Function} callback 回调函数
+ */
+Article.getAll = function(callback){
+
+	//从连接池中获取一个连接
+	db.getConnection(function(err, connection) {
+
+	  var sql = 'select a.article_title as title, date_format(a.article_date+\'\', \'%Y-%m-%d %H:%m:%S\') as date, a.id as id, a.article_access as access, t.tag_Name as tag, d.admin_Name as name from bzm_article a, bzm_tag t, bzm_admin d where a.article_TagId=t.id and a.article_AdminId=d.id order by date desc';
+
+      Log.log('sql' + sql);
+
+	  //查询
+	  connection.query(sql, function(err, articles) {
+		if (err){
+      	  Log.log('err' + err);
+		  callback(err, null);
+		}
+
+      	Log.log('articles' + articles);
+		callback(null, articles);
+
+		connection.end();		//使用完之后断开连接，放回连接池
+		//connection.destroy();	//使用之后释放资源，下次使用重新连接
+	  });
+	});
+};

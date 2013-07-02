@@ -2,14 +2,20 @@
 <% articles.forEach(function(article, index){ %>
   <div class='post_list'>
     <div class='post_title'>
-      <a href='/detail/<%= article.id %>' target='_blank'><%= article.title %></a>
+      <a href='/detail/<%= article.id %>' target='_blank'>
+      <%= article.title %>
+      </a>
     </div>
     <div class='post_content'><%- article.content %></div>
     <div class='post_info'>
       <%= article.date %>&nbsp;&nbsp;
-      <%= article.tag %>&nbsp;&nbsp;
+      <a href='/tag/<%= article.tag %>' target='_blank'>
+        <%= article.tag %>
+      </a>&nbsp;&nbsp;
       <%= article.access %>&nbsp;&nbsp;
-      <%= article.name %>&nbsp;&nbsp;
+      <a href='/about' target='_blank'>
+        <%= article.name %>
+      </a>&nbsp;&nbsp;
       <a href='/tag' target='_blank'>tag</a>&nbsp;&nbsp;
       推荐使用：
       <span aria-hidden="true" title="Chrome" class="icon-chrome"></span>

@@ -27,8 +27,11 @@
                         + "<div class='post_title'>"
                         + "<a href='/detail/"+item.id+"' target='_blank' class='detail_a'>"+item.title+"</a></div>"
                         + "<div class='post_content'>"+item.content+"</div>"
-                        + "<div class='post_info'>"+item.date+"&nbsp;&nbsp;"+ item.tag + "&nbsp&nbsp"+item.access
-                        + "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'>"+item.name+"</a>"
+                        + "<div class='post_info'>"+item.date+"&nbsp;&nbsp;"
+                        + "<a href='/tag/"+item.tag +"' target='_blank'>"
+                        + item.tag + "</a>&nbsp;&nbsp;"
+                        + "&nbsp&nbsp"+item.access
+                        + "&nbsp&nbsp<a href='/about' target='_blank' class='auth_a'>"+item.name+"</a>"
                         + "&nbsp&nbsp<a href='/tag' target='_blank' class='auth_a'>Tags</a>"
                         + "&nbsp;&nbsp;订阅：<a href='/feed' style='text-decoration:none;' target='_blank'>"
                         + "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>"
@@ -71,7 +74,7 @@
                         + "<a href='/detail/"+item.id+"' target='_blank' class='detail_a'>"+item.title+"</a></div>"
                         + "<div class='post_content'>"+item.content+"</div>"
                         + "<div class='post_info'>"+item.date+"&nbsp;&nbsp;"+ item.tag + "&nbsp&nbsp"+item.access
-                        + "&nbsp&nbsp<a href='Home/About' target='_blank' class='auth_a'>"+item.name+"</a>"
+                        + "&nbsp&nbsp<a href='/about' target='_blank' class='auth_a'>"+item.name+"</a>"
                         + "&nbsp&nbsp<a href='/tag' target='_blank' class='auth_a'>Tags</a>"
                         + "&nbsp;&nbsp;订阅：<a href='/feed' style='text-decoration:none;' target='_blank'>"
                         + "<span aria-hidden='true' title='订阅' style='color:#009933; cursor:pointer;' class='icon-feed'></span></a>"
@@ -80,11 +83,56 @@
 
                     var html = list;
 
-                    $("#Hid_Page").val(Number(page) + 1);
+                    $("#Hid_Page").val(Number(page) + 5);
 
                     $("#next_page").before(html);
 
                     prettyPrint();
+                }
+            }
+        );
+    });
+
+    //Tag文章下一頁
+    $("#next_c").click(function () {
+        var page = $("#Hid_Page").val();
+        var title = $("#Hid_Title").val();
+
+        //加載初始
+        $.post(
+            "/nextc",
+            { "ind": page, "title": title },
+            function (dats, status) {
+                if (status = "success") {
+                    var list = "";
+
+                    $.each(dats, function(i, item){
+                        list += "<div class='reply_list'>" 
+                            + "<table width='580' height='auto' border='0' align='center'>" 
+                            + "<tr>" 
+                            + "<td style='width:72px;' rowspan='2' align='center' valign='top'>" 
+                            + "<img src='/images/head.jpg' width='50' height='50' alt='"+item.name+"' title='"+item.name+"' />" 
+                            + "</td>" 
+                            + "<td align='left' style='width:498px; font-size:11px; color:#555;'>" 
+                            + ""+item.name+"&nbsp;&nbsp;"+item.date+"&nbsp;&nbsp;&nbsp;&nbsp;#"+i+"" 
+                            + "</td>" 
+                            + "</tr>" 
+                            + "<tr>" 
+                            + "<td align='left'>" 
+                            + "<div style='width:100%; font-size:12px; color:#555; height:auto; word-wrap:break-word; word-break:break-all;'>" 
+                            + ""+item.content+"" 
+                            + "</div>" 
+                            + "</td>" 
+                            + "</tr>" 
+                            + "</table>" 
+                            + "</div>";
+                    });
+
+                    var html = list;
+
+                    $("#Hid_Page").val(Number(page) + 15);
+
+                    $("#next_page").before(html);
                 }
             }
         );
