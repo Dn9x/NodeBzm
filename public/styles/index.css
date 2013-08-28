@@ -94,6 +94,17 @@
 	background: #EFEFEF;
 }
 
+.post_list1
+{
+	margin:80px auto 10px auto;
+	cursor: move;
+	transform: rotate(30deg);
+	-ms-transform: rotate(30deg);		/* IE 9 */
+	-webkit-transform: rotate(30deg);	/* Safari and Chrome */
+	-o-transform: rotate(30deg);		/* Opera */
+	-moz-transform: rotate(30deg);		/* Firefox */
+}
+
 .reply_list
 {
 	margin:10px auto;

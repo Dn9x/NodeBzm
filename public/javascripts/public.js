@@ -4,6 +4,14 @@
         $("#page").css("position", "absolute");
     }
 
+    $("#next_page").hide();
+
+    $(".post_list1").click(function(){
+        xh();
+        
+        //$(this).removeClass("post_list1");
+    });
+
     //改变图标颜色
     ChangeBrowser();
 
@@ -189,6 +197,29 @@
     });
 
 });
+
+window.n = 30;
+window.t;
+function xh(){
+
+    if(n>=0){
+        var du = "rotate("+this.n+"deg)";
+
+        $(".post_list1").css("transform", du)
+               .css("-ms-transform", du)
+               .css("-webkit-transform", du)
+               .css("-o-transform", du)
+               .css("-moz-transform", du);
+
+        n--;
+
+        t = setTimeout("xh()", 100);
+    }else{
+        //$(".post_list1").removeClass("post_list1");
+        $("#next_page").animate({ opacity: 'show' }, 1000 );
+        clearTimeout(t);
+    }
+}
 
 
 function ChangeBrowser() {

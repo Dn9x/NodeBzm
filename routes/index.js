@@ -9,7 +9,7 @@ var Log = require('../models/log.js');
 module.exports = function(app){
   app.get('/',function(req,res){
   	//获取文章列表信息
-    Article.getTen(0, 1, function(err, articles){
+    Article.getTen(0, 10, function(err, articles){
 
     	//判断是否有错
     	if(err){
